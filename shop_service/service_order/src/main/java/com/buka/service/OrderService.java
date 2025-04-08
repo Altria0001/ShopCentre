@@ -10,4 +10,6 @@ import java.util.List;
 public interface OrderService {
 	public R createorder(CreateOrderDTO createOrderDTO);
 	public String query(HttpServletRequest request) throws AlipayApiException;
+
+	public CreateOrderDTO getAddcar();
 }

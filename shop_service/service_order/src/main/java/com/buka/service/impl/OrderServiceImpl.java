@@ -10,13 +10,13 @@ import com.buka.service.ItbukaOrderService;
 import com.buka.service.OrderService;
 import com.buka.util.TokenDecode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -28,6 +28,10 @@ public class OrderServiceImpl implements OrderService {
 	private TokenDecode tokenDecode;
 	@Autowired
 	private ItbukaOrderService orderService;
+	@Autowired
+	private RedisTemplate redisTemplate;
+	private final static String CAR_KEY="car_key";
+
 	@Override
 	public R createorder(CreateOrderDTO createOrderDTO) {
 		Integer productNum = goodsApi.getinventory(createOrderDTO.getProductDetailId());
@@ -60,6 +64,32 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public String query(HttpServletRequest request) throws AlipayApiException {
 		return aliPayService.AlipayTradeQuery(request);
+
+	}
+
+	@Override
+	public CreateOrderDTO getAddcar() {
+		Map<String, String> userInfo = tokenDecode.getUserInfo();
+		String userid=userInfo.get("user_name");
+		HashOperations hashOperations = redisTemplate.opsForHash();
+		Set keys = hashOperations.keys(CAR_KEY+userid);
+		Iterator<Long> iterator = keys.iterator();
+		List<Long> productdetails=new ArrayList<>();
+		while(iterator.hasNext()){
+			productdetails.add(iterator.next());
+		}
+		List<CreateOrderDTO> createOrderDTOS=new ArrayList<>();
+		CreateOrderDTO createOrderDTO = new CreateOrderDTO();
+		for (Long productdetailsid:productdetails){
+			Object countObj = redisTemplate.opsForHash().get(CAR_KEY + userid, productdetailsid);
+			Integer count = Integer.valueOf(countObj + "");
+			createOrderDTO.setProductDetailId(productdetailsid);
+			createOrderDTO.setCount(count);
+			createOrderDTOS.add(createOrderDTO);
+			//暂时不做多个商品同时锁单
+		}
+		createorder(createOrderDTO);
+		return createOrderDTO;
 
 	}
 }
