@@ -8,8 +8,9 @@ public class MqConstant {
     public static final String PRODDUCT_ADD_ROUKEY="add";
     public static final String PRODDUCT_UPDATE_ROUKEY="UPDATE";
 
-
-
+    public static final String PAY_PROVIDER_DEATHQUEUE="pay.provider.deathqueue";
+    public static final String PAY_CUNSUMMER_DEATHQUEUE="pay.consummer.deathqueue";
+    public static final String PAY_EXCHANGE="pay.exchange";
 
 
 
