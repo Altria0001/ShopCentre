@@ -11,6 +11,7 @@
         <module name="service_search" />
         <module name="service_user" />
         <module name="user_api" />
+        <module name="buka_shop_common_db" />
         <module name="service_file" />
         <module name="service_order" />
         <module name="shop_common_db" />
@@ -18,6 +19,7 @@
         <module name="shop_gateway" />
         <module name="goods_api" />
         <module name="shop_canal" />
+        <module name="mqTest" />
         <module name="service_goods" />
         <module name="mqtest" />
         <module name="service_ad" />
@@ -27,7 +29,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="buka_shop_common_db" options="-parameters" />
       <module name="goods_api" options="-parameters" />
+      <module name="mqTest" options="-parameters" />
       <module name="mqtest" options="-parameters" />
       <module name="service_ad" options="-parameters" />
       <module name="service_file" options="-parameters" />
