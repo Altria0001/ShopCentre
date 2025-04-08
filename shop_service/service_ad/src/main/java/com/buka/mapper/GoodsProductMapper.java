@@ -1,0 +1,18 @@
+package com.buka.mapper;
+
+import com.buka.domain.GoodsProduct;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+/**
+* @author Altria
+* @description 针对表【goods_product(商品表)】的数据库操作Mapper
+* @createDate 2025-02-22 10:09:17
+* @Entity com.buka.com.buka.domain.domain.GoodsProduct
+*/
+public interface GoodsProductMapper extends BaseMapper<GoodsProduct> {
+
+}
+
+
+
+

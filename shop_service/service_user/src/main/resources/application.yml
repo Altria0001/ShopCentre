@@ -1,0 +1,27 @@
+server:
+  port: 9071
+  jetty:
+    max-http-form-post-size: 20480
+spring:
+  application:
+    name: user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/itbukq_user?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    connection-timeout: 10000
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml

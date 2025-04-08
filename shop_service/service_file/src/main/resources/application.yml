@@ -1,0 +1,25 @@
+server:
+  port: 9070
+spring:
+  application:
+    name: file
+feign:
+  hystrix:
+    enabled: true
+
+#hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          #如果enabled设置为false，则请求超时交给ribbon控制
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+
+
+minio:
+  url: http://localhost:9002
+  userName: minioadmin
+  passWord: minioadmin

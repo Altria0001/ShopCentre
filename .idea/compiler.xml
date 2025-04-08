@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="shop_auth" />
+        <module name="service_search" />
+        <module name="service_user" />
+        <module name="user_api" />
+        <module name="service_file" />
+        <module name="service_order" />
+        <module name="shop_common_db" />
+        <module name="service_shopcar" />
+        <module name="shop_gateway" />
+        <module name="goods_api" />
+        <module name="shop_canal" />
+        <module name="service_goods" />
+        <module name="mqtest" />
+        <module name="service_ad" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="goods_api" options="-parameters" />
+      <module name="mqtest" options="-parameters" />
+      <module name="service_ad" options="-parameters" />
+      <module name="service_file" options="-parameters" />
+      <module name="service_goods" options="-parameters" />
+      <module name="service_order" options="-parameters" />
+      <module name="service_search" options="-parameters" />
+      <module name="service_shopcar" options="-parameters" />
+      <module name="service_user" options="-parameters" />
+      <module name="shop_auth" options="-parameters" />
+      <module name="shop_canal" options="-parameters" />
+      <module name="shop_common" options="" />
+      <module name="shop_common_db" options="-parameters" />
+      <module name="shop_gateway" options="-parameters" />
+      <module name="user_api" options="-parameters" />
+    </option>
+  </component>
+</project>

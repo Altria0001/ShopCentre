@@ -1,0 +1,42 @@
+server:
+  port: 9015
+spring:
+  redis:
+    host: localhost
+  rabbitmq:
+    host: localhost
+    listener:
+      simple:
+        acknowledge-mode: manual
+  application:
+    name: order
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/itbuka_order?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
+    username: root
+    password: 1234
+feign:
+  hystrix:
+    enabled: true
+
+#hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          #如果enabled设置为false，则请求超时交给ribbon控制
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+
+
+alipay:
+  privatekey: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCKQK8ti8TUvscXlDqDJKL1zrP/3Xjs+yyuaO7W50bqY8dl0M5TYIEfoCRnsIZeoVL+NPo7YUvJVQdIbI9Hf/m4p8Us95k8tG59Qx8M9UEDEg56OleNDMVXf1ClNfSZr65BH/ou9KPnaeiCJvZ5ZX+8mt5wwSu7cWMDQXbcbG/JEiYu43BgaTgqmldzhtop6QON8I0upq+/O1UW+D2rTF9wW+tSpmGZ9dh4UXHjZaw/1OUCOg7FL4M4jtCsywlIrFOL+I35F/LludxzuGwaEwgtn+J+mjRNRVyJL7X1JszWgN6O26c6WO5sZzUe1oun7Z0a0FXj3Bov7htxJvo+mr4NAgMBAAECggEAGnqZEpgacsS3TQTO0B9MNtgIEZFRf9H7lMv0MqTJKEtD/XQokD+De5MoZdOhaK5tPtLWuljAMydd5bklGASix4MaeKpTZxUHtGYOpGS0tunWbAKQkitIAKIZyAq1dln3ffGp8SRZ4BCgv4zG2ClgdbcTs3TL83KcDBuVsFH0dwYCET43HkmfNMopHNt0OGQEiHddHtgo2lS2ol6STWrXgbuupYlatRQgp6HyoGGd4d/GQR1E6VHSIu9etfaAXcDExnIUTPdyIFVJkfQuHPdBpRJhVdoojCE20eUTf1KeIOPwaPX2T5MLbWTIZ85jAwhGinCfxBu7b48O3/73T+2xAQKBgQDYroxK3v38ARYcJpRIj4Zv5di6QRzoAtEobZLKJMaMRZVve+KJqVtjfpYhrv5SJlRI+nqpl8xYfskMLqEOwjnVkovwgM6F/Tv48N9lm2DlceAVf6oC8BZV+SkGo1iPFVOdVVxIq70nAvqRdGpFk/ugUWUITOUIQQQlF0U3fDeWpQKBgQCjVuRGC8O4MnZn3RbEwd1//F4yFmJNJq6uuE0LgqpFxrFD2YnqknuqamxMFALhSgJR79qu9HhOr/O+1iotBLX9QZCeJFh0awhfsTs/QGwBMnLSNleBrJt3u6yChg5AnrUkPsB8TXrCWEnEh9t+A2YgTPGz9V034fkrEkxRtgxVSQKBgFAFbkQ8RBosIIk26i496w0qGjb20wEQAURn6v0CRd0J2Z05aDkktV5yImnAIaYfB6OH9YLqT4ojEIaSNeKocglgvJOOTjcHhX1zH11723YA7xuhcRzyo50OjksoSg1Vd/Kz0of3/LwKipTrJFAbzaKwTJqbIz5AHJLCHErYcgMNAoGAZFGKtAant2qu1E2ynTegTen3BHZA+7eFU+P31djzsRU+bDigfwRmlZz1VKh5uFqXIDHbMtcNSO7CGnQ4xRt+lsP9CVOzTBUsuHEGvWtYqkeMw9UCW69icOBALI4fFMsk39T2raF8gv5smBsE0NlPkQkQ7gEFtrvAKBb97rWLz5kCgYBrE4szxyqfULZSUU9skqKHs9s3Pd15T1BQIMH8DQCRm9eg+ydGexSGNRF+jLXMuiqOXXun0RSpyBBLJUkeOSOawCHY4m9+AFKcftbTJ7hfZ1vDpj5bB/gNToQSvsoTl1nF3wLjfjDSXc7M8sscUZAN9F3OjfLb1/AmB0q8XepEbg==
+  alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy6pJxrWQ03Dxx3OU0f/KbkmUf8e2lWiaGJqiqi3eP7mXmCmkcNGZotv7I8mst69P2RaKslSxed7Q1j2aN9Llo8+Q88faSe7OaYCt49xehicTpITv9+O7yoKlgYpUJG7Ps978W72M770Evq97sNrw3L6+3yS8b/kcQOl+Nl3sUlY8sI/48GknWmMWLfDzLHNv0sgaIVQGLMZGk7fwAY+oJJh18/PRzXTrCYE+gyLh/Z4Vt7K/Fv0GrU3UBuOJ142D+tXBEetrdBAWOGFxe3Hr7fq7gKggXDdrCdMLLSm5zincRgbSZ29KN6VPBeEydMYMNFlNabaJx8wTrdQPhvoP2wIDAQAB
+  appId: 9021000140615747
+  serverUrl: https://openapi-sandbox.dl.alipaydev.com/gateway.do
+  returnUrl: https://www.bilibili.com
+  notifyUrl:  http://45ii5c.natappfree.cc/order/notifUrl

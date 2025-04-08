@@ -1,0 +1,11 @@
+spring:
+  rabbitmq:
+    host: localhost
+
+canal:
+  client:
+    instances:
+      example:
+        host: localhost
+        port: 11111
+        batch-size: 1000

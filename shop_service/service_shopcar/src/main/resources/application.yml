@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: car
+  redis:
+    host: localhost
+server:
+  port: 9014

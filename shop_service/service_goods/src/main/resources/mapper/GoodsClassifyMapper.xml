@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buka.mapper.GoodsClassifyMapper">
+
+    <resultMap id="BaseResultMap" type="com.buka.domain.GoodsClassify">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="classifyName" column="classify_name" jdbcType="VARCHAR"/>
+            <result property="classifyLogo" column="classify_logo" jdbcType="VARCHAR"/>
+            <result property="seq" column="seq" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="commission" column="commission" jdbcType="VARCHAR"/>
+            <result property="isuperiorId" column="isuperior_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,classify_name,classify_logo,
+        seq,status,is_delete,
+        create_time,update_time,commission,
+        isuperior_id
+    </sql>
+</mapper>
