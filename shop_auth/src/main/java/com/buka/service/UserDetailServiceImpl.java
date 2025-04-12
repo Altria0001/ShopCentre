@@ -1,9 +1,9 @@
 package com.buka.service;
 
+import com.buka.User;
 import com.buka.api.UserFeinAplService;
 import com.buka.entity.R;
 import com.buka.entity.UserInfo;
-import com.buka.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

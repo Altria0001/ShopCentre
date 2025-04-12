@@ -1,7 +1,7 @@
 package com.buka.service;
 
-import com.buka.Ad;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.buka.Ad;
 
 /**
 * @author Altria

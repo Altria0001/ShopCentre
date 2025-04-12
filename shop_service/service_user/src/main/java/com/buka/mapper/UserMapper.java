@@ -1,7 +1,7 @@
 package com.buka.mapper;
 
-import com.buka.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.buka.User;
 
 /**
 * @author Altria

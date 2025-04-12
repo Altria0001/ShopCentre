@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.buka.domain.GoodsClassify;
 import com.buka.entity.R;
-import com.buka.service.GoodsClassifyService;
 import com.buka.mapper.GoodsClassifyMapper;
+import com.buka.service.GoodsClassifyService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

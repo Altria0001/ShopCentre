@@ -1,7 +1,7 @@
 package com.buka.service;
 
-import com.buka.domain.GoodsBrand;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.buka.domain.GoodsBrand;
 import com.buka.entity.R;
 
 /**

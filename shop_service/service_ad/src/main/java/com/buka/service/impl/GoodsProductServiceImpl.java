@@ -2,8 +2,8 @@ package com.buka.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.buka.domain.GoodsProduct;
-import com.buka.service.GoodsProductService;
 import com.buka.mapper.GoodsProductMapper;
+import com.buka.service.GoodsProductService;
 import org.springframework.stereotype.Service;
 
 /**

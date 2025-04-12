@@ -2,11 +2,11 @@ package com.buka.task;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.buka.Ad;
+import com.buka.service.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import com.buka.service.AdService;
 
 import java.util.List;
 

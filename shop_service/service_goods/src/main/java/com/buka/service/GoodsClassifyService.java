@@ -1,7 +1,7 @@
 package com.buka.service;
 
-import com.buka.domain.GoodsClassify;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.buka.domain.GoodsClassify;
 
 import java.util.List;
 

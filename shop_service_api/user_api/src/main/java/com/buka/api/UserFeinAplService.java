@@ -1,7 +1,7 @@
 package com.buka.api;
 
-import com.buka.entity.R;
 import com.buka.User;
+import com.buka.entity.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;

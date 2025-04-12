@@ -32,7 +32,6 @@
       <module name="buka_shop_common_db" options="-parameters" />
       <module name="goods_api" options="-parameters" />
       <module name="mqTest" options="-parameters" />
-      <module name="mqtest" options="-parameters" />
       <module name="service_ad" options="-parameters" />
       <module name="service_file" options="-parameters" />
       <module name="service_goods" options="-parameters" />
@@ -42,8 +41,6 @@
       <module name="service_user" options="-parameters" />
       <module name="shop_auth" options="-parameters" />
       <module name="shop_canal" options="-parameters" />
-      <module name="shop_common" options="" />
-      <module name="shop_common_db" options="-parameters" />
       <module name="shop_gateway" options="-parameters" />
       <module name="user_api" options="-parameters" />
     </option>

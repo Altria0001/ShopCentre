@@ -1,9 +1,9 @@
 package com.buka.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.buka.User;
 import com.buka.entity.R;
 import com.buka.service.UserService;
-import com.buka.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

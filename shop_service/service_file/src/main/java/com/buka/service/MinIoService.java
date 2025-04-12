@@ -1,7 +1,6 @@
 package com.buka.service;
 
 import com.buka.entity.R;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;

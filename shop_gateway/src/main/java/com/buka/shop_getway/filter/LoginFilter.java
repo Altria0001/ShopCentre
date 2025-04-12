@@ -1,5 +1,5 @@
 package com.buka.shop_getway.filter;
-import com.buka.shop_getway.config.JwtUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -10,8 +10,6 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
-import java.util.Map;
 @Component
 public class LoginFilter implements GlobalFilter {
 	@Autowired

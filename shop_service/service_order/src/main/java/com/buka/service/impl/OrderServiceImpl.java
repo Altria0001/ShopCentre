@@ -4,11 +4,13 @@ import com.alipay.api.AlipayApiException;
 import com.buka.api.GoodsApi;
 import com.buka.domain.ItbukaOrder;
 import com.buka.domain.dto.CreateOrderDTO;
+import com.buka.entity.MqConstant;
 import com.buka.entity.R;
 import com.buka.service.AliPayService;
 import com.buka.service.ItbukaOrderService;
 import com.buka.service.OrderService;
 import com.buka.util.TokenDecode;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,6 +26,8 @@ public class OrderServiceImpl implements OrderService {
 	private AliPayService aliPayService;
 	@Autowired
 	private GoodsApi goodsApi;
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 	@Autowired
 	private TokenDecode tokenDecode;
 	@Autowired
@@ -58,6 +62,7 @@ public class OrderServiceImpl implements OrderService {
 		} catch (AlipayApiException e) {
 			throw new RuntimeException(e);
 		}
+		rabbitTemplate.convertAndSend("", MqConstant.PAY_PROVIDER_DEATHQUEUE,order.getId());
 		return R.ok();
 	}
 

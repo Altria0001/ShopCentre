@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.buka.domain.GoodsBrand;
 import com.buka.entity.R;
-import com.buka.service.GoodsBrandService;
 import com.buka.mapper.GoodsBrandMapper;
+import com.buka.service.GoodsBrandService;
 import org.springframework.stereotype.Service;
 
 /**
