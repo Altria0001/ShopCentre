@@ -41,7 +41,6 @@ public class AliPayServiceImpl implements AliPayService {
 		model.setSubject(title);
 
 		model.setProductCode("FAST_INSTANT_TRADE_PAY");
-
 		request.setBizModel(model);
 		request.setReturnUrl(payConfigClass.getReturnUrl());  //设置支付完成之后跳转的地址
 		request.setNotifyUrl(payConfigClass.getNotifyUrl());  // 支付状态发生改变之后  回调的地址
@@ -65,15 +64,19 @@ public class AliPayServiceImpl implements AliPayService {
 	@Override
 	public String AlipayTradeQuery(HttpServletRequest QueryRequest) throws AlipayApiException {
 		AlipayClient alipayClient = new DefaultAlipayClient(getAlipayConfig());
+
 		// 构造请求参数以调用接口
 		AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
 		AlipayTradeQueryModel model = new AlipayTradeQueryModel();
 
 		// 设置订单支付时传入的商户订单号
-		model.setOutTradeNo(QueryRequest.getParameter("out_trade_no"));
+		model.setOutTradeNo(QueryRequest.getParameter("OutTradeNo"));
 
 		// 设置支付宝交易号
-		model.setTradeNo(QueryRequest.getParameter("trade_no"));
+		model.setTradeNo("2014112611001004680 073956707");
+
+		// 设置银行间联模式下有用
+		model.setOrgPid("2088101117952222");
 
 		// 设置查询选项
 		List<String> queryOptions = new ArrayList<String>();

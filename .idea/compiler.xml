@@ -22,6 +22,7 @@
         <module name="mqTest" />
         <module name="service_goods" />
         <module name="mqtest" />
+        <module name="service_seckill" />
         <module name="service_ad" />
       </profile>
     </annotationProcessing>
@@ -37,6 +38,7 @@
       <module name="service_goods" options="-parameters" />
       <module name="service_order" options="-parameters" />
       <module name="service_search" options="-parameters" />
+      <module name="service_seckill" options="-parameters" />
       <module name="service_shopcar" options="-parameters" />
       <module name="service_user" options="-parameters" />
       <module name="shop_auth" options="-parameters" />

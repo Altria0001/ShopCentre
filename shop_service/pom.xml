@@ -20,6 +20,7 @@
         <module>service_shopcar</module>
         <module>service_order</module>
         <module>service_order</module>
+        <module>service_seckill</module>
     </modules>
 
     <properties>
