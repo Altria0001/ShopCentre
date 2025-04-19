@@ -25,17 +25,11 @@ public class PayLisent {
     private ItbukaOrderMapper itbukaOrderMapper;
     @RabbitListener(queues = MqConstant.PAY_CUNSUMMER_DEATHQUEUE)
     public void payListen(Long orderId) throws AlipayApiException {
-        LambdaQueryWrapper<ItbukaOrder> lambdaQueryWrapper=new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ItbukaOrder::getId,orderId);
-        ItbukaOrder itbukaOrders = itbukaOrderMapper.selectOne(lambdaQueryWrapper);
-        Integer status = itbukaOrders.getStatus();
-        HttpServletRequest httpServletRequest = null;
-        httpServletRequest.setAttribute("out_trade_no",orderId);
-        String s = aliPayService.AlipayTradeQuery(httpServletRequest);
-       if(s.contains("\"msg\":\"Success\"")){
-            //"支付成功";
+        // 查询本系统，订单状态是否支付
+        // 查询支付宝的支付状态
 
-        }
 
+        // 如果两个系统都没有支付，那么关闭订单
+        System.out.println("队列被监听了！");
     }
 }

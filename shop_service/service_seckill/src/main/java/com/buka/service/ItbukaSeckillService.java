@@ -2,6 +2,9 @@ package com.buka.service;
 
 import com.buka.domain.ItbukaSeckill;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.buka.entity.R;
+
+import java.util.List;
 
 /**
 * @author Altria
@@ -10,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ItbukaSeckillService extends IService<ItbukaSeckill> {
 
+
+	boolean buyGoods(Long productid);
 }

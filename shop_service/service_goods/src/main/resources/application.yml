@@ -27,6 +27,8 @@ hystrix:
           #如果enabled设置为false，则请求超时交给ribbon控制
           enabled: true
         isolation:
+          thread:
+            timeoutInMilliseconds: 100000
           strategy: SEMAPHORE
 
 mybatis-plus:

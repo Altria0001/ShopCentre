@@ -1,17 +1,18 @@
 package com.buka.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.buka.domain.GoodsProduct;
 import com.buka.domain.GoodsProductDetails;
 import com.buka.entity.R;
 import com.buka.service.GoodsProductDetailsService;
 import com.buka.service.GoodsProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/goods")
@@ -62,5 +63,16 @@ public class GoodsController {
 	public BigDecimal getPrice(Long productid){
 
 		return ProductDetailsService.getById(productid).getPrice();
+	}
+	@RequestMapping("/getGoodsInfo")
+	public R<Map<Long,GoodsProduct>> getGoodsInfo(@RequestParam("productIds") List<Long> productIds){
+		LambdaQueryWrapper<GoodsProduct> goodsProductLambdaQueryWrapper = new LambdaQueryWrapper<>();
+		goodsProductLambdaQueryWrapper.in(GoodsProduct::getId,productIds);
+		List<GoodsProduct> list = ProductService.list(goodsProductLambdaQueryWrapper);
+		HashMap<Long, GoodsProduct> res = new HashMap<>();
+		for (GoodsProduct goodsProduct : list) {
+			res.put(goodsProduct.getId(),goodsProduct);
+		}
+		return R.ok(res);
 	}
 }

@@ -13,5 +13,5 @@ public class MqConstant {
     public static final String PAY_EXCHANGE="pay.exchange";
 
 
-
+	public static final String SECKILL_QUEUE ="seckill.queue";
 }

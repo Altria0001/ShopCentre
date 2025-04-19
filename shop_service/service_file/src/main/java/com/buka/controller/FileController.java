@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("file")
+// 文件上传下载接口
 public class FileController {
     @Autowired
     private MinIoService minIoService;

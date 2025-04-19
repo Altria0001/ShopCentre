@@ -69,8 +69,8 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="ItbukaSeckill" />
-                  <option name="tableName" value="itbuka_seckill" />
+                  <option name="className" value="ItbukaSeckillProduct" />
+                  <option name="tableName" value="itbuka_seckill_product" />
                 </TableUIInfo>
               </list>
             </option>

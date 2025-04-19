@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @FeignClient(name = "goods")
@@ -19,4 +21,6 @@ public interface GoodsApi {
     public Integer getinventory(@RequestParam("pid") Long id);
     @RequestMapping("/goods/getPrice")
     public BigDecimal getPrice(@RequestParam("productid") Long productid);
+    @RequestMapping("/goods/getGoodsInfo")
+    public R<Map<Long,GoodsProduct>> getGoodsInfo(@RequestParam("productIds") List<Long> productIds);
 }
