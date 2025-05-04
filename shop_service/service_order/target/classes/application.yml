@@ -27,8 +27,11 @@ hystrix:
         timeout:
           #如果enabled设置为false，则请求超时交给ribbon控制
           enabled: true
+          mileseconds: 50000
         isolation:
           strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 50000
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*.xml
 

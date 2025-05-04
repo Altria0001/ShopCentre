@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,14 +66,23 @@ public class GoodsController {
 		return ProductDetailsService.getById(productid).getPrice();
 	}
 	@RequestMapping("/getGoodsInfo")
-	public R<Map<Long,GoodsProduct>> getGoodsInfo(@RequestParam("productIds") List<Long> productIds){
-		LambdaQueryWrapper<GoodsProduct> goodsProductLambdaQueryWrapper = new LambdaQueryWrapper<>();
-		goodsProductLambdaQueryWrapper.in(GoodsProduct::getId,productIds);
-		List<GoodsProduct> list = ProductService.list(goodsProductLambdaQueryWrapper);
-		HashMap<Long, GoodsProduct> res = new HashMap<>();
-		for (GoodsProduct goodsProduct : list) {
-			res.put(goodsProduct.getId(),goodsProduct);
+	public R <Map<Long,GoodsProduct>> getGoodsInfo(@RequestParam("productIds") List<Long> productIds){
+		if (productIds == null || productIds.isEmpty()) {
+			return R.fail("产品为空");
 		}
-		return R.ok(res);
+
+		LambdaQueryWrapper<GoodsProduct> queryWrapper = new LambdaQueryWrapper<>();
+		queryWrapper.in(GoodsProduct::getId, productIds);
+		List<GoodsProduct> products = ProductService.list(queryWrapper);
+
+		if (products == null || products.isEmpty()) {
+			return R.ok(Collections.emptyMap());
+		}
+
+		Map<Long, GoodsProduct> result = new HashMap<>(products.size());
+		for (GoodsProduct product : products) {
+			result.put(product.getId(), product);
+		}
+		return R.ok(result);
 	}
 }

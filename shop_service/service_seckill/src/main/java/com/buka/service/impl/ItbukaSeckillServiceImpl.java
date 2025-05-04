@@ -2,12 +2,15 @@ package com.buka.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.buka.domain.BuyProductDomain;
 import com.buka.domain.ItbukaSeckill;
+import com.buka.domain.vo.SeckillGoodsVO;
 import com.buka.entity.MqConstant;
 import com.buka.entity.PageResult;
 import com.buka.entity.R;
+import com.buka.mapper.ItbukaSeckillProductMapper;
 import com.buka.service.ItbukaSeckillService;
 import com.buka.mapper.ItbukaSeckillMapper;
 import com.buka.util.TokenDecode;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import static com.buka.task.SeckillTask.SECKILL_KEY;
 import static com.buka.task.SeckillTask.SECKILL_PRODUCT_NUM_KEY;
 
 /**
@@ -53,6 +57,14 @@ public class ItbukaSeckillServiceImpl extends ServiceImpl<ItbukaSeckillMapper, I
 		}
 		
 	}
+
+	@Override
+	public R slect() {
+		String jsonString = (String) redisTemplate.opsForValue().get(SECKILL_KEY);
+		SeckillGoodsVO seckillGoods = JSONObject.parseObject(jsonString,SeckillGoodsVO.class);
+		return R.ok(seckillGoods);
+	}
+
 }
 
 

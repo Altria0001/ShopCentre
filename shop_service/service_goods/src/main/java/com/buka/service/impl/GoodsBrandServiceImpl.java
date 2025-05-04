@@ -7,6 +7,7 @@ import com.buka.domain.GoodsBrand;
 import com.buka.entity.R;
 import com.buka.mapper.GoodsBrandMapper;
 import com.buka.service.GoodsBrandService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class GoodsBrandServiceImpl extends ServiceImpl<GoodsBrandMapper, GoodsBrand>
     implements GoodsBrandService{
+    @Autowired
+    private GoodsBrandMapper goodsMapper;
     @Override
     public R brandList(String brandName,Integer pageNum) {
         LambdaQueryWrapper<GoodsBrand> goodsBrandLambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -31,12 +34,12 @@ public class GoodsBrandServiceImpl extends ServiceImpl<GoodsBrandMapper, GoodsBr
 
     @Override
     public Integer insertBrand(GoodsBrand goodsBrand) {
-        return baseMapper.insert(goodsBrand);
+        return goodsMapper.insert(goodsBrand);
     }
 
     @Override
     public Integer updateBrand(GoodsBrand goodsBrand) {
-        return baseMapper.updateById(goodsBrand);
+        return goodsMapper.updateById(goodsBrand);
     }
 
     @Override
@@ -48,7 +51,7 @@ public class GoodsBrandServiceImpl extends ServiceImpl<GoodsBrandMapper, GoodsBr
                GoodsBrand goodsBrand=new GoodsBrand();
                goodsBrand.setId(Long.parseLong(s));
                goodsBrand.setIsDelete(1);
-               baseMapper.updateById(goodsBrand);
+               goodsMapper.updateById(goodsBrand);
             }
             return 1;
         }catch (Exception e){
@@ -62,7 +65,7 @@ public class GoodsBrandServiceImpl extends ServiceImpl<GoodsBrandMapper, GoodsBr
         GoodsBrand goodsBrand=new GoodsBrand();
         goodsBrand.setId(id);
         goodsBrand.setStatus(status);
-        return baseMapper.updateById(goodsBrand);
+        return goodsMapper.updateById(goodsBrand);
     }
 
     @Override
@@ -76,7 +79,7 @@ public class GoodsBrandServiceImpl extends ServiceImpl<GoodsBrandMapper, GoodsBr
         }else {
             goodsBrand.setStatus(1);
         }
-        return baseMapper.updateById(goodsBrand);
+        return goodsMapper.updateById(goodsBrand);
     }
 
 }

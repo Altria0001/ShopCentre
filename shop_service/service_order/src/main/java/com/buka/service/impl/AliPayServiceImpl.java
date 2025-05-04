@@ -4,10 +4,11 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.AlipayConfig;
 import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.domain.AlipayTradePagePayModel;
-import com.alipay.api.domain.AlipayTradeQueryModel;
+import com.alipay.api.domain.*;
+import com.alipay.api.request.AlipayTradeOrderPayRequest;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeQueryRequest;
+import com.alipay.api.response.AlipayTradeOrderPayResponse;
 import com.alipay.api.response.AlipayTradePagePayResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.buka.domain.AliPayConfigClass;
@@ -30,34 +31,44 @@ public class AliPayServiceImpl implements AliPayService {
 		AlipayClient alipayClient = new DefaultAlipayClient(getAlipayConfig());
 		AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
 		AlipayTradePagePayModel model = new AlipayTradePagePayModel();
-
 		// 设置商户订单号
 		model.setOutTradeNo(orderID);
-
 		// 设置订单总金额
 		model.setTotalAmount(money);
-
 		// 设置订单标题
-		model.setSubject(title);
+		model.setSubject("Iphone6 16G");
+		// 设置PC扫码支付的方式
+		model.setQrPayMode("1");
 
-		model.setProductCode("FAST_INSTANT_TRADE_PAY");
+
+		// 设置订单包含的商品列表信息
+		List<GoodsDetail> goodsDetail = new ArrayList<GoodsDetail>();
+		GoodsDetail goodsDetail0 = new GoodsDetail();
+		goodsDetail0.setGoodsName("name");
+		goodsDetail0.setAlipayGoodsId("20010001");
+		goodsDetail0.setQuantity(1L);
+		goodsDetail0.setPrice("30");
+		goodsDetail0.setGoodsId("apple-01");
+		goodsDetail0.setGoodsCategory("34543238");
+		goodsDetail0.setCategoriesTree("124868003|126232002|126252004");
+		goodsDetail0.setShowUrl("http://www.alipay.com/xxx.jpg");
+		goodsDetail.add(goodsDetail0);
+		model.setGoodsDetail(goodsDetail);
+
+		// 设置商户门店编号
+
+
 		request.setBizModel(model);
-		request.setReturnUrl(payConfigClass.getReturnUrl());  //设置支付完成之后跳转的地址
-		request.setNotifyUrl(payConfigClass.getNotifyUrl());  // 支付状态发生改变之后  回调的地址
 
 		AlipayTradePagePayResponse response = alipayClient.pageExecute(request, "POST");
 		String pageRedirectionData = response.getBody();
 		System.out.println(pageRedirectionData);
-
 		if (response.isSuccess()) {
-			System.out.println("调用成功");
+			return  R.ok("调用成功");
 		} else {
-			System.out.println("调用失败");
-			// sdk版本是"4.38.0.ALL"及以上,可以参考下面的示例获取诊断链接
-			// String diagnosisUrl = DiagnosisUtils.getDiagnosisUrl(response);
-			// System.out.println(diagnosisUrl);
+			return R.fail("调用失败");
+
 		}
-		return R.ok();
 
 	}
 
@@ -72,20 +83,12 @@ public class AliPayServiceImpl implements AliPayService {
 		// 设置订单支付时传入的商户订单号
 		model.setOutTradeNo(QueryRequest.getParameter("OutTradeNo"));
 
-		// 设置支付宝交易号
-		model.setTradeNo("2014112611001004680 073956707");
-
-		// 设置银行间联模式下有用
-		model.setOrgPid("2088101117952222");
-
 		// 设置查询选项
 		List<String> queryOptions = new ArrayList<String>();
 		queryOptions.add("trade_settle_info");
 		model.setQueryOptions(queryOptions);
 
 		request.setBizModel(model);
-		// 第三方代调用模式下请设置app_auth_token
-		// request.putOtherTextParam("app_auth_token", "<-- 请填写应用授权令牌 -->");
 
 		AlipayTradeQueryResponse response = alipayClient.execute(request);
 		System.out.println(response.getBody());
@@ -94,9 +97,6 @@ public class AliPayServiceImpl implements AliPayService {
 			System.out.println("调用成功");
 		} else {
 			System.out.println("调用失败");
-			// sdk版本是"4.38.0.ALL"及以上,可以参考下面的示例获取诊断链接
-			// String diagnosisUrl = DiagnosisUtils.getDiagnosisUrl(response);
-			// System.out.println(diagnosisUrl);
 		}
 		return response.getBody();
 	}

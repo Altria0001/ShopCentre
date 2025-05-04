@@ -1,8 +1,6 @@
 server:
   port: 9020
 spring:
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
   rabbitmq:
     host: localhost
     publisher-confirms: true

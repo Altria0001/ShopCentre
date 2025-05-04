@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2025-04-19 14:48:19
 */
 public interface ItbukaSeckillProductService extends IService<ItbukaSeckillProduct> {
-
+	void updateProductQuantity(Long productId, String productNum);
 }

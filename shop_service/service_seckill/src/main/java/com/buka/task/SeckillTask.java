@@ -47,7 +47,6 @@ public class SeckillTask {
     @Scheduled(cron = "0 */1 * * * *")
     //每天凌晨执行一次，更新秒杀商品信息
     public void SeckillProduct(){
-        goodsApi.getPrice(123456L);
         LambdaQueryWrapper<ItbukaSeckill>queryWrapper=new LambdaQueryWrapper<>();
         DateTime StartTime=DateUtil.beginOfDay(new Date());
         DateTime EndTime=DateUtil.endOfDay(new Date());
@@ -67,7 +66,7 @@ public class SeckillTask {
             ArrayList<GoodsVo> goodsVos=new ArrayList<>();
             for(ItbukaSeckillProduct itbukaSeckillProduct:list1){
                 Integer num = itbukaSeckillProduct.getNum();
-                redisTemplate.opsForValue().set(SECKILL_PRODUCT_NUM_KEY+":"+itbukaSeckillProduct.getId(),num);
+                redisTemplate.opsForValue().set(SECKILL_PRODUCT_NUM_KEY+":"+itbukaSeckillProduct.getId(),num.toString());
                 //在redis中存入秒杀商品的id以及对应的库存
                 GoodsVo goodsVo=new GoodsVo();
                 Long productId = itbukaSeckillProduct.getProductId();

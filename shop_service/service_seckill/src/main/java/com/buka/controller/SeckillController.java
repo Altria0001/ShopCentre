@@ -16,7 +16,7 @@ public class SeckillController {
 	private ItbukaSeckillProductService seckillProductService;
 	@RequestMapping("list")
 	public R seckillGoodsList(){
-		return R.ok(seckillService.list(null));
+		return R.ok(seckillService.slect());
 	}
 	@RequestMapping("buy")
 	public R seckillBuyGoods(Long productid){

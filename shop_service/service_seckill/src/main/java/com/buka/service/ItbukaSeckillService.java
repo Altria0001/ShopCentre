@@ -15,4 +15,8 @@ public interface ItbukaSeckillService extends IService<ItbukaSeckill> {
 
 
 	boolean buyGoods(Long productid);
+
+	R slect();
+
+
 }
