@@ -1,0 +1,31 @@
+server:
+  port: 9020
+spring:
+  rabbitmq:
+    host: localhost
+    publisher-confirms: true
+  application:
+    name: seckill
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/itbuka_seckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+  redis:
+    host: localhost
+feign:
+  hystrix:
+    enabled: true
+
+#hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          #如果enabled设置为false，则请求超时交给ribbon控制
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
